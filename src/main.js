@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import '@/icons'
 
 Vue.config.productionTip = false
 
@@ -15,6 +16,6 @@ new Vue({
   },
   template: '<App/>',
   mounted() {
-      document.dispatchEvent(new Event('render-event'));
+    document.dispatchEvent(new Event('render-event'));
   }
 })
