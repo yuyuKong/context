@@ -15,22 +15,26 @@ r.keys().forEach(key=>{
   let ikey = key.replace(/\.\//,'')
   console.log(key)
   console.log(ikey)
+  console.log(r(key))
   let _keyArr = key.replace('/index.vue','').split('.')
   let keyArr = key.split('/')
   if (ikey.indexOf('/') === -1 && ikey.indexOf('index') != -1) {
     route = {
       path:_keyArr[1],
-      component:()=>import(`./pages/${ikey}`)
+      component:()=>import(`./pages/${ikey}`),
+      meta:r(key).meta || {}
     }
   } else if (keyArr.indexOf('index') != -1) {
     arr.push({
       path:`${keyArr[keyArr.indexOf('index')-1].replace('/','')}`,
-      component:()=>import(`./pages/${ikey}`)
+      component:()=>import(`./pages/${ikey}`),
+      meta:r(key).meta || {}
     })
   } else {
     arr.push({
       path:`${_keyArr[1].replace('/','')}`,
-      component:()=>import(`./pages/${ikey}`)
+      component:()=>import(`./pages/${ikey}`),
+      meta:r(key).meta || {}
     })
   }
 })
