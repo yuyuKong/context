@@ -4,12 +4,23 @@ import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
+const routerList = [];
+function importAll (route){
+  route.keys().forEach(
+    (key) => routerList.push(route(key).default)
+  )
+}
+
+importAll(require.context('../view', true, /\.routers\.js/))
+console.log(routerList)
+
 export default new Router({
   routes: [
     {
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
-    }
+    },
+    ...routerList
   ]
 })
