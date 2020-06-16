@@ -1,11 +1,15 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <child1></child1>
+    <child2></child2>
     <span class="svg-container svg-container_login">
         <svg-icon icon-class="test" />
     </span>
     <div class="svg-container">
        <svg-icon icon-class="password"></svg-icon>
+       <svg-icon icon-class="Car"></svg-icon>
+       <svg-icon icon-class="user"></svg-icon>
     </div>
   </div>
 </template>
