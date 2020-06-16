@@ -1,6 +1,6 @@
 <template>
   <div>
-    third
+    model1 seconed
   </div>
 </template>
 

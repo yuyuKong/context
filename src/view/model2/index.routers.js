@@ -6,23 +6,30 @@
  * 但是不可以组件按需加载，可以学习服务器端渲染
  */
 
-
-
 var r = require.context('./pages',true,/.vue/)
 var arr = []
 var route = {}
 
 r.keys().forEach(key=>{
-  var _keyArr = key.split('.')
-  if (key.indexOf('index') != -1) {
+  let ikey = key.replace(/\.\//,'')
+  console.log(key)
+  console.log(ikey)
+  let _keyArr = key.replace('/index.vue','').split('.')
+  let keyArr = key.split('/')
+  if (ikey.indexOf('/') === -1 && ikey.indexOf('index') != -1) {
     route = {
       path:_keyArr[1],
-      component:r(key).default
+      component:()=>import(`./pages/${ikey}`)
     }
+  } else if (keyArr.indexOf('index') != -1) {
+    arr.push({
+      path:`${keyArr[keyArr.indexOf('index')-1].replace('/','')}`,
+      component:()=>import(`./pages/${ikey}`)
+    })
   } else {
     arr.push({
-      path:`${_keyArr[2]}`,
-      component:r(key).default
+      path:`${_keyArr[1].replace('/','')}`,
+      component:()=>import(`./pages/${ikey}`)
     })
   }
 })
