@@ -12,8 +12,8 @@ var route = {}
 
 r.keys().forEach(key=>{
   let ikey = key.replace(/\.\//,'')
-  console.log(key)
-  console.log(ikey)
+  // console.log(key)
+  // console.log(ikey)
   let _keyArr = key.replace('/index.vue','').split('.')
   let keyArr = key.split('/')
   if (ikey.indexOf('/') === -1 && ikey.indexOf('index') != -1) {
@@ -34,5 +34,5 @@ r.keys().forEach(key=>{
   }
 })
 route.children = arr
-console.log(route)
+// console.log(route)
 export default route
